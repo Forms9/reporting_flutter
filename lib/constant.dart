@@ -1,5 +1,6 @@
 // import 'package:adaptive_dialog/adaptive_dialog.dart';
 // import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,14 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 // Colors
 var appBarColor = const Color(0XFF0C2844);
 
-// var buttonColors =
-//     WindowButtonColors(iconNormal: Colors.white, mouseDown: Colors.black);
+var buttonColors =
+    WindowButtonColors(iconNormal: Colors.white, mouseDown: Colors.black);
 
-// var buttonColors2 = WindowButtonColors(
-//     iconNormal: Colors.white,
-//     mouseDown: Colors.black,
-//     mouseOver: Colors.red[600],
-//     iconMouseOver: Colors.white);
+var buttonColors2 = WindowButtonColors(
+    iconNormal: Colors.white,
+    mouseDown: Colors.black,
+    mouseOver: Colors.red[600],
+    iconMouseOver: Colors.white);
 
 var defaultAccentColor = const Color(0XFF1BC6C1);
 
@@ -107,33 +108,33 @@ var customTextField = TextField(
 );
 
 // Application Components - Parameterized
-// void customOKAlertDialog(
-//     BuildContext context, String cTitle, String cMessage, String cOKLabel) {
-//   showOkAlertDialog(
-//     context: context,
-//     title: cTitle,
-//     message: cMessage,
-//     okLabel: cOKLabel,
-//     builder: (context, child) => Theme(
-//       data: ThemeData(
-//         fontFamily: GoogleFonts.poppins().fontFamily,
-//         textButtonTheme: TextButtonThemeData(
-//           style: TextButton.styleFrom(
-//             foregroundColor: defaultBackgroundColor,
-//             textStyle: TextStyle(
-//               fontFamily: GoogleFonts.poppins().fontFamily,
-//             ),
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(10),
-//             ),
-//             backgroundColor: defaultAccentColor,
-//           ),
-//         ),
-//       ),
-//       child: child,
-//     ),
-//   );
-// }
+void customOKAlertDialog(
+    BuildContext context, String cTitle, String cMessage, String cOKLabel) {
+  showOkAlertDialog(
+    context: context,
+    title: cTitle,
+    message: cMessage,
+    okLabel: cOKLabel,
+    builder: (context, child) => Theme(
+      data: ThemeData(
+        fontFamily: GoogleFonts.poppins().fontFamily,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: defaultBackgroundColor,
+            textStyle: TextStyle(
+              fontFamily: GoogleFonts.poppins().fontFamily,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            backgroundColor: defaultAccentColor,
+          ),
+        ),
+      ),
+      child: child,
+    ),
+  );
+}
 
 // var connectionWidget = OfflineBuilder(
 //   connectivityBuilder: (context, connectivity, child) {

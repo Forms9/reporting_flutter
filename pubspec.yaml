@@ -1,4 +1,4 @@
-name: forms9_pos_auth
+name: reporting_app
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  objectbox: ^2.0.0
+  objectbox: ^1.7.0
   objectbox_flutter_libs: any
   path_provider: ^2.0.1
   cupertino_icons: ^1.0.2
@@ -56,17 +56,18 @@ dependencies:
   elegant_notification: ^1.6.4
   shared_preferences: ^2.0.17
 
-dependency_overrides:
-  macos_ui:
-    git:
-      url: https://github.com/Mayb3Nots/macos_ui
-      ref: ef51bfe
+# dependency_overrides:
+#   macos_ui:
+#     git:
+#       url: https://github.com/Mayb3Nots/macos_ui
+#       ref: ef51bfe
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.0.0
   objectbox_generator: any
+  analyzer: ^5.13.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -116,11 +117,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-msix_config:
-  display_name: Forms9 Point of Sale 
-  publisher_display_name: Forms9 Infotech
-  identity_name: company.suite.flutterapp
-  msix_version: 1.0.0.0
-  capabilities: internetClient, location
-  certificate_path: CERTIFICATE.pfx
-  certificate_password: Prince@1101
+# msix_config:
+#   display_name: Forms9 Reporting App 
+#   publisher_display_name: Forms9 Infotech
+#   identity_name: company.suite.flutterapp
+#   msix_version: 1.0.0.0
+#   capabilities: internetClient, location
+#   certificate_path: CERTIFICATE.pfx
+#   certificate_password: Prince@1101

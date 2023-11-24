@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: eb376e9acf6938204f90eb3b1f00b578640d3188b4c8a8ec054f9f479af8d051
+      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
       url: "https://pub.dev"
     source: hosted
-    version: "64.0.0"
+    version: "61.0.0"
   adaptive_dialog:
     dependency: "direct main"
     description:
@@ -26,13 +26,13 @@ packages:
     source: hosted
     version: "0.0.7"
   analyzer:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: analyzer
-      sha256: "69f54f967773f6c26c7dcb13e93d7ccee8b17a641689da39e878d5cf13b06893"
+      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.0"
+    version: "5.13.0"
   animations:
     dependency: transitive
     description:
@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.8"
+  appkit_ui_element_colors:
+    dependency: transitive
+    description:
+      name: appkit_ui_element_colors
+      sha256: c3e50f900aae314d339de489535736238627071457c4a4a2dbbb1545b4f04f22
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   archive:
     dependency: transitive
     description:
@@ -301,10 +309,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "40ae61a5d43feea6d24bd22c0537a6629db858963b99b4bc1c3db80676f32368"
+      sha256: "1efa911ca7086affd35f463ca2fc1799584fb6aa89883cf0af8e3664d6a02d55"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.2"
   device_info:
     dependency: transitive
     description:
@@ -345,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.2"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.5"
   fake_async:
     dependency: transitive
     description:
@@ -456,6 +472,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.4"
+  gradient_borders:
+    dependency: transitive
+    description:
+      name: gradient_borders
+      sha256: "69eeaff519d145a4c6c213ada1abae386bcc8981a4970d923e478ce7ba19e309"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   graphs:
     dependency: transitive
     description:
@@ -553,14 +577,13 @@ packages:
     source: hosted
     version: "1.2.0"
   macos_ui:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "."
-      ref: ef51bfe
-      resolved-ref: ef51bfe6dabce1277e21aaf6cb4c7ff61d2040a7
-      url: "https://github.com/Mayb3Nots/macos_ui"
-    source: git
-    version: "2.1.0-beta.1"
+      name: macos_ui
+      sha256: cc499122655c61728185561e9006af4b239f9526f98d7b2cbf42124e9044a0ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   macos_window_utils:
     dependency: transitive
     description:
@@ -621,26 +644,26 @@ packages:
     dependency: "direct main"
     description:
       name: objectbox
-      sha256: "4b645c71771b87188442143a50c55ab238a8e60fe367b6a0968c0842292ffb30"
+      sha256: c18d41f4e81e5a30fc0e2200e9e8306f5ccc8a9b61fe3746426359690c33dc7b
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "1.7.2"
   objectbox_flutter_libs:
     dependency: "direct main"
     description:
       name: objectbox_flutter_libs
-      sha256: e9a3d8e3ce0d47d6fc942921ef0444a238cd4258e8fcefe13b994cf984a8bf61
+      sha256: "179a2edfca5eb80abee6e829ebff69872ad20c9f07c2527fe9d098f4bf5a5b83"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "1.7.2"
   objectbox_generator:
     dependency: "direct dev"
     description:
       name: objectbox_generator
-      sha256: aaffef7eb51b4d911bb00a7c52b19b55fe3e5a69de8ec56552cf35550a1e9beb
+      sha256: "728a9ccf4d6a2ac44a016f6cb9798e4a31ee92b79828526181e0de97a3506c28"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.1"
+    version: "1.7.2"
   package_config:
     dependency: transitive
     description:

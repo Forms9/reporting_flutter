@@ -5,6 +5,7 @@
 import FlutterMacOS
 import Foundation
 
+import appkit_ui_element_colors
 import bitsdojo_window_macos
 import dynamic_color
 import flutter_udid
@@ -22,6 +23,7 @@ import sqflite
 import window_manager
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+  AppkitUiElementColorsPlugin.register(with: registry.registrar(forPlugin: "AppkitUiElementColorsPlugin"))
   BitsdojoWindowPlugin.register(with: registry.registrar(forPlugin: "BitsdojoWindowPlugin"))
   DynamicColorPlugin.register(with: registry.registrar(forPlugin: "DynamicColorPlugin"))
   FlutterUdidPlugin.register(with: registry.registrar(forPlugin: "FlutterUdidPlugin"))

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../dashboard/desktop_dashboard.dart';
-import '../dashboard/mobile_dashboard.dart';
-import '../dashboard/tablet_dashboard.dart';
+import '../responsive/dashboard/desktop_dashboard.dart';
+import '../responsive/dashboard/mobile_dashboard.dart';
+import '../responsive/dashboard/tablet_dashboard.dart';
 import '../responsive_layout.dart';
 // import 'package:reporting_app/responsive_layout.dart';
 

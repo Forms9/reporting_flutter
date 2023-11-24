@@ -1,22 +1,20 @@
 import 'dart:developer';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:forms9_pos_auth/util/my_box.dart';
-
+import '../../constant.dart';
 import '../../main.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:forms9_pos_auth/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../pages/login.dart';
-import '../constant.dart';
+import '../../util/my_box.dart';
 
-class DesktopLoginPage extends StatefulWidget {
-  const DesktopLoginPage({Key? key}) : super(key: key);
+class TabletLoginPage extends StatefulWidget {
+  const TabletLoginPage({Key? key}) : super(key: key);
 
   @override
-  State<DesktopLoginPage> createState() => _DesktopLoginPageState();
+  State<TabletLoginPage> createState() => _TabletLoginPageState();
 }
 
 Color getColor(Set<MaterialState> states) {
@@ -31,7 +29,7 @@ Color getColor(Set<MaterialState> states) {
   return defaultTextColor;
 }
 
-class _DesktopLoginPageState extends State<DesktopLoginPage> {
+class _TabletLoginPageState extends State<TabletLoginPage> {
   // Dynamically show the password to the user
   bool _isObscure = true;
 
@@ -61,7 +59,6 @@ class _DesktopLoginPageState extends State<DesktopLoginPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.transparent,
-      appBar: windowsAppBar,
       body: Row(
         children: [
           Expanded(
@@ -71,11 +68,11 @@ class _DesktopLoginPageState extends State<DesktopLoginPage> {
                 Container(
                   decoration: BoxDecoration(
                     color: defaultBackgroundColor,
-                    // image: const DecorationImage(
-                    //   image: AssetImage('assets/images/login_image.jpg'),
-                    //   fit: BoxFit.contain,
-                    //   alignment: Alignment.bottomCenter,
-                    // ),
+                    image: const DecorationImage(
+                      image: AssetImage('assets/images/login_image.jpg'),
+                      fit: BoxFit.contain,
+                      alignment: Alignment.bottomCenter,
+                    ),
                   ),
                 ),
                 Column(

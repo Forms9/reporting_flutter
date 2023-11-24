@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:forms9_pos_auth/util/drawer.dart';
 
-class DesktopDashboard extends StatelessWidget {
-  const DesktopDashboard({super.key});
+import '../../util/drawer.dart';
+
+class TabletDashboard extends StatelessWidget {
+  const TabletDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
