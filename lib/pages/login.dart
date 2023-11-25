@@ -1,197 +1,74 @@
-import 'dart:convert';
-
+// login_page.dart
 import 'package:flutter/material.dart';
-import 'package:reporting_app/database.dart';
-import 'package:reporting_app/objectbox.g.dart';
-//import 'package:forms9_pos_auth/pages/search_product.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-// import '../Screenpage/Dashboard.dart';
-import '../constant.dart';
-import '../main.dart';
-import 'dart:developer';
-import '../responsive/login/desktop_login.dart';
-import '../responsive/login/mobile_login.dart';
-import '../responsive/login/tablet_login.dart';
-import '../responsive_layout.dart';
-import 'dashboard.dart';
-
-final username = TextEditingController();
-final password = TextEditingController();
-bool remember = true;
-List<User> userlist = List.empty(growable: true);
-
-void _usernameListener() {}
-void _passwordListener() {}
-
-loginfunction(BuildContext context) async {
-  Box<User> userbox = Box<User>(store);
-  Query<User> query =
-      userbox.query(User_.username.equals(username.text)).build();
-  List<User> users = query.find();
-  log("reached login");
-  if (users.isNotEmpty) {
-    if (users[0].password == password.text) {
-      cUser = users[0];
-
-      final loginPref = await SharedPreferences.getInstance();
-
-      if (remember) {
-        await loginPref.setString('username', cUser.username);
-        await loginPref.setString('password', cUser.password);
-      } else {
-        await loginPref.remove('username');
-        await loginPref.remove('password');
-      }
-
-      // getProductData();
-      // Navigator.of(context).push(
-      //   MaterialPageRoute(
-      //     builder: ((context) => const ScanBarcodePage()),
-      //   ),
-      // );
-    } else {
-      {
-        customOKAlertDialog(context, 'Error',
-            'Wrong username/password. Please try again.', 'OK');
-        log("BAD PASSWORD");
-      }
-    }
-  } else {
-    customOKAlertDialog(
-        context, 'Error', 'Wrong username/password. Please try again.', 'OK');
-    log("BAD USERNAME");
-  }
-  username.text = "";
-  password.text = "";
-  query.close();
-}
-
-Future<void> getUsers(String storename) async {
-  try {
-    log("Getting Users for this Store --------");
-    var headers = {'Content-Type': 'application/json'};
-    var request =
-        http.Request('GET', Uri.parse('http://$apiURL/get_user_byStore'));
-    request.body = json.encode({
-      "mac_id": displayDeviceId,
-      "applier_username": "Superuser",
-      "applier_password": "Export@99",
-      "store": storename
-    });
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      Box<User> userbox = Box<User>(store);
-      Query<User> query = userbox.query().build();
-      query.remove();
-      userlist = List.empty(growable: true);
-
-      String data = await response.stream.bytesToString();
-      var jsonData = json.decode(data);
-      if (jsonData.toString().contains("403") ||
-          jsonData
-              .toString()
-              .contains("You donot have the necessary permissions")) {
-        Box<User> userbox = Box<User>(store);
-        Query<User> query = userbox.query(User_.type.equals('ADMIN')).build();
-        List<User> admins = query.find();
-        query.close();
-        if (admins.isEmpty) {
-          final user = User(
-              username: "Superuser",
-              password: "Export@99",
-              type: "ADMIN",
-              store: storename);
-          var id = store.box<User>().put(user);
-          log(id.toString());
-          log("New default admin generated --------");
-        }
-      } else {
-        final user = User(
-            username: "Superuser",
-            password: "Export@99",
-            type: "ADMIN",
-            store: storename);
-        var id = store.box<User>().put(user);
-        log(id.toString());
-        log("New default admin generated --------");
-        var userData = json.decode(jsonData["user_data"]);
-        for (var user in userData) {
-          final User newUser = User(
-              username: user['username'],
-              password: user['password'],
-              type: user['user_type'],
-              store: user['store'].toString());
-          var id = store.box<User>().put(newUser);
-          log("Added ${user['username']}");
-          userlist.add(newUser);
-        }
-        storeType = storename;
-      }
-    } else {
-      log(response.reasonPhrase.toString());
-    }
-  } catch (e) {
-    log(e.toString());
-  }
-}
+import '../models/user_repository.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
-
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  @override
-  initState() {
-    super.initState();
-    username.addListener(_usernameListener);
-    password.addListener(_passwordListener);
-    // Box<User> userbox = Box<User>(store);
-    // Query<User> query = userbox.query(User_.type.equals('ADMIN')).build();
-    // List<User> admins = query.find();
-    // query.close();
-
-    // // Fetch users using Django API if the condition is satisfied.
-    // if (admins.isEmpty) {
-    //   final user = User(
-    //       username: "Superuser",
-    //       password: "Export@99",
-    //       type: "ADMIN",
-    //       store: "CELE");
-    //   var id = store.box<User>().put(user);
-    //   log(id.toString());
-    //   log("New default admin generated --------");
-    //}
-    // try {
-    //   getUsers();
-    // } catch (e) {
-    //   log(e.toString());
-    // }
-  }
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _userRepository = UserRepository();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: const ResponsiveLayout(
-        mobileBody: MobileLoginPage(),
-        tabletBody: TabletLoginPage(),
-        desktopBody: DesktopLoginPage(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(labelText: 'Username'),
+            ),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(labelText: 'Password'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                final username = _usernameController.text;
+                final password = _passwordController.text;
+
+                // Perform user authentication
+                final user = await _userRepository.getUserByUsername(username);
+
+                if (user != null && user.password == password) {
+                  // Navigate to the main reporting page
+                  // You can pass the user/store information to the next screen
+                  Navigator.pushReplacementNamed(context, '/main_report_page');
+                } else {
+                  // Show an error message
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Login Failed'),
+                      content: Text('Invalid username or password'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+              child: Text('Login'),
+            ),
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    username.dispose();
-    password.dispose();
-    super.dispose();
   }
 }
